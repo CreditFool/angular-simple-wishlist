@@ -31,28 +31,6 @@
   </div>
 
   <div class="row mt-3">
-    @if (visibleItems.length > 0) {
-    <ul class="whislist">
-      @for (item of visibleItems; track item.wishText; let idx = $index) {
-      <li>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input
-              type="checkbox"
-              name="{{ item.wishText }}"
-              id="{{ item.wishText }}"
-              [checked]="item.isComplete"
-              [attr.data-index]="idx"
-              (click)="toggleItem(item)"
-            />
-            {{ item.wishText }}
-          </label>
-        </div>
-      </li>
-      }
-    </ul>
-    } @else {
-    <div>There are no wishlist</div>
-    }
+    <app-wish-list [wishes]="visibleItems"></app-wish-list>
   </div>
 </div>
