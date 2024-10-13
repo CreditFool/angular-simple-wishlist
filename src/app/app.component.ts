@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { WishItem } from '../shared/model/wishItem';
 import { EventService } from '../shared/service/EventService';
-import { WishService } from './wish.service';
+import { WishService } from './wish/wish.service';
 import { WishModule } from './wish/wish.module';
 
 @Component({
