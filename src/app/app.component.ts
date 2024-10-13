@@ -30,24 +30,6 @@ export class AppComponent {
   ];
 
   newWishText = '';
-  addNewWish() {
-    if (this.newWishText) {
-      this.items.push(new WishItem(this.newWishText));
-      this.newWishText = '';
-    }
-  }
 
-  listFilter: String = '0';
-  get visibleItems(): WishItem[] {
-    switch (this.listFilter) {
-      case '1':
-        return this.items.filter((item) => !item.isComplete);
-
-      case '2':
-        return this.items.filter((item) => item.isComplete);
-
-      default:
-        return this.items;
-    }
-  }
+  filter: any = () => {};
 }

@@ -2,10 +2,10 @@
   <app-add-wish-form (addWish)="items.push($event)"></app-add-wish-form>
 
   <div class="row mt-3">
-    <app-wish-filter></app-wish-filter>
+    <app-wish-filter (filter)="filter = $event"></app-wish-filter>
   </div>
 
   <div class="row mt-3">
-    <app-wish-list [wishes]="visibleItems"></app-wish-list>
+    <app-wish-list [wishes]="items.filter(filter)"></app-wish-list>
   </div>
 </div>
