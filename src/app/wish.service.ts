@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { from } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +22,16 @@ export class WishService {
     };
   }
 
+  handleError(error: HttpErrorResponse): Observable<any> {
+    if (error.status === 0) {
+      console.error(`There is an issue with client network: ${error.error}`);
+    } else {
+      console.error(`Server side error: ${error.error}`);
+    }
+
+    return throwError(() => new Error('Cannot retrive data from server'));
+  }
+
   getWishes() {
     let options = this.getStandardOptions();
 
@@ -25,7 +41,9 @@ export class WishService {
       },
     });
 
-    return this.http.get('assets/wishes.json', options);
+    return this.http
+      .get('assets/wishes2.json', options)
+      .pipe(catchError(this.handleError));
   }
 
   addWish() {
