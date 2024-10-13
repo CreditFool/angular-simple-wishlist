@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import events from '../../shared/service/EventService';
+import { EventService } from '../../shared/service/EventService';
 import { WishItem } from '../../shared/model/wishItem';
 
 @Component({
@@ -13,12 +13,14 @@ import { WishItem } from '../../shared/model/wishItem';
 export class WishListItemComponent {
   @Input() wish!: WishItem;
 
+  constructor(private events: EventService) {}
+
   get cssClasses() {
     return { 'strikeout text-muted': this.wish.isComplete };
   }
 
   removeWish() {
-    events.emit('removeWish', this.wish);
+    this.events.emit('removeWish', this.wish);
   }
 
   toggleFullfilled() {

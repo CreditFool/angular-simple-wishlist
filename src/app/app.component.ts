@@ -5,7 +5,7 @@ import { WishItem } from '../shared/model/wishItem';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { AddWishFormComponent } from './add-wish-form/add-wish-form.component';
 import { WishFilterComponent } from './wish-filter/wish-filter.component';
-import events from '../shared/service/EventService';
+import { EventService } from '../shared/service/EventService';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +30,7 @@ export class AppComponent {
     new WishItem('Jake Kokoro'),
   ];
 
-  constructor() {
+  constructor(events: EventService) {
     events.listen('removeWish', (wish: any) => {
       const idx = this.items.indexOf(wish);
       this.items.splice(idx, 1);
