@@ -29,7 +29,5 @@ export class AppComponent {
     new WishItem('Jake Kokoro'),
   ];
 
-  newWishText = '';
-
-  filter: any = () => {};
+  filter: any;
 }

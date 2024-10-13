@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { WishItem } from '../../shared/model/wishItem';
 
@@ -16,15 +16,17 @@ const filters = [
   styleUrl: './wish-filter.component.css',
 })
 export class WishFilterComponent implements OnInit {
-  @Output() filter = new EventEmitter<any>();
+  @Input() filter: any;
+  @Output() filterChange = new EventEmitter<any>();
 
   ngOnInit(): void {
-    this.filter.emit(filters[0]);
+    this.updateFilter('0');
   }
 
-  listFilter: String = '0';
+  listFilter: any = '0';
 
-  changeFilter(value: any) {
-    this.filter.emit(filters[value]);
+  updateFilter(value: any) {
+    this.filter = filters[value];
+    this.filterChange.emit(this.filter);
   }
 }
