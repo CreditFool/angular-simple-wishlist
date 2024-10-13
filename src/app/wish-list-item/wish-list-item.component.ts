@@ -1,21 +1,27 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import events from '../../shared/service/EventService';
 import { WishItem } from '../../shared/model/wishItem';
 
 @Component({
   selector: 'app-wish-list-item',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './wish-list-item.component.html',
   styleUrl: './wish-list-item.component.css',
 })
 export class WishListItemComponent {
-  @Input() wishText!: string;
+  @Input() wish!: WishItem;
 
-  @Input() fullfilled!: boolean;
-  @Output() fullfilledChange = new EventEmitter<boolean>();
+  get cssClasses() {
+    return { 'strikeout text-muted': this.wish.isComplete };
+  }
+
+  removeWish() {
+    events.emit('removeWish', this.wish);
+  }
 
   toggleFullfilled() {
-    this.fullfilled = !this.fullfilled;
-    this.fullfilledChange.emit(this.fullfilled);
+    this.wish.isComplete = !this.wish.isComplete;
   }
 }

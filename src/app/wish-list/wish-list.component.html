@@ -1,10 +1,7 @@
 @if (wishes.length > 0) {
 <ul class="whislist">
   @for (item of wishes; track item.wishText; let idx = $index) {
-  <app-wish-list-item
-    [wishText]="item.wishText"
-    [(fullfilled)]="item.isComplete"
-  ></app-wish-list-item>
+  <app-wish-list-item [wish]="item"></app-wish-list-item>
   }
 </ul>
 } @else {
