@@ -1,0 +1,14 @@
+<li>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input
+        type="checkbox"
+        name="{{ wishText }}"
+        id="{{ wishText }}"
+        [checked]="fullfilled"
+        (click)="toggleFullfilled()"
+      />
+      {{ wishText }}
+    </label>
+  </div>
+</li>
